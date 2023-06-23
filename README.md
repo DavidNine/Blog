@@ -5,13 +5,9 @@ Auth: Guanyan.Wang
 
 Desc:
 
-  Hello ~ 
-
-  I am a Taiwan collage CS student
+  Hello ~  I am a Taiwan collage CS student
   
-  Here is my practice note
-  
-  You can use these note as you want
+  Here is my practice note, You can use these note as you want
 
   Thank you
   

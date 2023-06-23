@@ -9,6 +9,4 @@ Desc:
   
   Here is my practice note, You can use these note as you want
 
-  Thank you
-  
-  Guanyan
+  If there is any error, please tell me.

@@ -1,1 +1,0 @@
-cmd_/home/ninebro/workspace/Driver/example.ko := ld -r -m elf_x86_64 -z noexecstack --build-id=sha1  -T scripts/module.lds -o /home/ninebro/workspace/Driver/example.ko /home/ninebro/workspace/Driver/example.o /home/ninebro/workspace/Driver/example.mod.o;  true

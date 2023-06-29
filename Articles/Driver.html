@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/Blog/CSS/style.css">
     <link rel="stylesheet" href="/CSS/articles_driver.css">
+    <link rel="stylesheet" href="/Blog/CSS/articles_driver.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -16,8 +17,8 @@
 
     <nav>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="articles.html">Articles</a></li>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
             <li><a href="#">About Me</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
@@ -29,6 +30,35 @@
                 <h1>Make a Driver in Linux OS </h1>
                 <p>Date: 2023/06/28</p>
                 <p>Auth: Guanyan.Wang</p>
+                <span>--------------------------------------------------------------------</span>
+                <h2>1. Getting-start</h2>
+                <p>First, we need to build essential environment for developing linux Driver, build-essential will install tools that mandatory for compiling program such as gcc, make etc.</p>
+                <pre><code>$sudo apt-get install build-essential linux-headers-$(uname -r)</code></pre>
+                <p>$(uname -r) will get your kernel version</p>
+                <img src="../Image/Ariticle-Driver/uname_result.jpg" alt="uname command result">
+                <h2>2. Simple Driver !</h2>
+                <div class="test">
+                <pre><code>/* example.c */<br>#include &lt;linux/init.h&gt;<br>#include &lt;linux/module.h&gt;<br><br>MODULE_LICENSE("Dual BSD/GPL");<br>static int example_init(void) {<br>    printk("&lt;Sample&gt; Example: init\n");<br>    return 0;<br>}<br>static void example_exit(void) {<br>    printk("&lt;Sample&gt; Example: exit\n");<br>}<br>module_init(example_init);<br>module_exit(example_exit);</code></pre>
+                <p>$(printk) is like printf in kernel programing. If we need to debug, this will be useful, we can use $(sudo dmesg) to observe the result.</p>
+                <h2>3. Compile</h2>
+                <p>We need to make a makefile to compile our program</p>
+                <pre><code>$touch Makefile</code></pre>
+                <p>Use touch command to create a Makefile, then we write follow program into Makefile</p>
+                <pre><code>obj-m := example.o<br>ifeq ($(KERNELDIR),)<br>KERNELDIR=/lib/modules/$(shell uname -r)/build<br>endif<br><br>all:<br>    make -C $(KERNELDIR) M=$(PWD) modules<br><br>clean:<br>    make -C $(KERNELDIR) M=$(PWD) clean</code></pre>
+                <p>Use make command to compile</p>
+                <pre><code>$make</code></pre>
+                <img src="../Image/Ariticle-Driver/make_result.jpg" alt="make command result">
+                <p>After we make to compile our program, it will generate some files</p>
+                <img src="../Image/Ariticle-Driver/make_result2.jpg" alt="make command files result">
+                <h2>4. Load/Remove Driver</h2>
+                <p>We use linux command $(insmod) and $(rmmod) to load/remove Driver</p>
+                <pre><code>$sudo insmod example.ko<br>$sudo rmmod example</code></pre>
+                <p>You can use command $(sudo dmesg) to observe the Driver info</p>
+                <img src="../Image/Ariticle-Driver/Driver_info.jpg" alt="Driver Info">
+                <h1>Reference</h1>
+                <p>Writing device drivers in Linux: A brief tutorial</p>
+                <span>--------------------------------------------------------------------</span>
+                <h2>If there is anything wrong<br>Please contact me at ninebro1211@gmail.com</h2>
             </div>
             
         </div>

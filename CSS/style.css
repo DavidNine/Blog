@@ -63,3 +63,17 @@ footer p {
     font-size: x-large;
     font-family: 'Noto Sans TC', sans-serif;
 }
+
+pre {
+    color: #5c5c5c;
+    border: #e4e3e3 solid 1px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f0f0f0a4;
+    overflow: auto;
+}
+
+img {
+    width: 600px;
+    margin: 10px auto;
+}

@@ -113,7 +113,7 @@
       padding-left: 70px;
       padding-right: 25px;
     }
-  
+    
   /* Make sure that all arrows are pointing leftwards */
     .container::before {
       left: 60px;
@@ -122,6 +122,7 @@
       border-color: transparent white transparent transparent;
     }
   
+    
   /* Make sure all circles are at the same spot */
     .left::after, .right::after {
       left: 15px;
@@ -132,3 +133,18 @@
       left: 0%;
     }
   }
+
+    .content a {
+      color: #000;
+      font-family:sans-serif;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    .content a:hover {
+      color: #b3b3b3;
+    }
+
+    .content p {
+      font-family: 'Noto Sans TC', sans-serif;
+    }

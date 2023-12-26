@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NineBro's Blog</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="/blog/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/articles_KeyBoard.css">
+    <link rel="stylesheet" href="/blog/CSS/articles_KeyBoard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <h1>NineBro's Blog</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
+            <li><a href="../about.html">About Me</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content-container">
+            <div class="content">
+                <h1>Make your own keyboard in linux </h1>
+                <blockquote>
+                    <p>Date : 2023/07/13</p>
+                    <p>Auth : Guanyan.Wang</p>
+                    <p>Module : Logitech G512</p>
+                    <p>Environment : Ubuntu 22.04</p>
+                </blockquote>
+                <h2>LED keyboard problem</h2>
+                <picture>
+                    <img src="../Image/about/20230713_194210.jpg" alt="my keyboard">
+                    <p>My keyboard setting in linux</p>
+                </picture>
+                <blockquote>        
+                    <p>I am a Logitech keyborad user</p>
+                    <p>I change my OS to Ubuntu 22.04, and found that my keyborad LED control was orderless</p>
+                    <br>
+                    <p>After some searching and researching, I found that some type of the keyboard LED is controled by software</p>
+                    <p>So if we want to control in linux OS, We can use dependencies &lt;libusb&gt; or &lt;hidapi&gt; to control keyborad</p>
+                    <br>
+                    <p>Thanks for MatMoul develop a control tools for everyone</p>
+                    <br>
+                </blockquote>
+                <h2>Free Keyboard control source:</h2>
+                <blockquote>
+                    <h3>Author : MatMoul</h3>
+                    <p>Link : <a href="https://github.com/MatMoul/g810-led"> <span class="devicons devicons-github_badge"></span> https://github.com/MatMoul/g810-led</a></p>
+                </blockquote>
+                <h2>How to install</h2>
+                <blockquote>
+                    <h3>Install Reference</h3>
+                    <p><a href="https://github.com/MatMoul/g810-led/blob/master/INSTALL.md"><span class="devicons devicons-github_badge"></span>https://github.com/MatMoul/g810-led/blob/master/INSTALL.md</a></p> 
+                </blockquote>
+                <h2>Write a service</h2>
+                <blockquote>
+                    <p>control will lost after you restart your linux os, so we can wrtie it as a driver or a service</p>
+                    <p>so that we can setup your favorite color when you boot your OS</p>
+                    <br>
+                    <p>You can use rc-local.service to and your script to setup when you open your computer</p>
+                    <p>
+<pre><code>#!/bin/bash
+                    
+sudo g512-led -g fkeys ff0000
+sudo g512-led -g keys 00ff00
+sudo g512-led -g functions ff00ee
+sudo g512-led -g modifiers ff5500
+sudo g512-led -g numeric ff11aa
+
+sudo g512-led -c
+exit 0
+</code></pre>
+                </p> 
+                <p>Here is my setting script, load this script into system service</p>
+                <p>Note that you need to set the right 755 for your script</p>
+                <pre><code>sudo chmod 755 xxxx.sh</code></pre>
+                <p>set your service</p>
+                <pre><code>sudo vi /etc/systemd/system/rc-local.service</code></pre>
+                <p>then write down content</p>
+                <pre>
+<code>[Unit]
+    Description=/etc/rc.local Compatibility
+    ConditionPathExists=/etc/rc.local
+    
+[Service]
+    Type=forking
+    ExecStart=/etc/rc.local start
+    TimeoutSec=0
+    StandardOutput=tty
+    RemainAfterExit=yes
+    SysVStartPriority=99
+    
+[Install]
+    WantedBy=multi-user.target
+</code></pre>
+                <p>create rc.local document</p>
+                <p><pre><code>sudo vi /etc/rc.local</code></pre></p>
+                <p>now call your own script</p>
+                <p>
+<pre><code>#!/bin/bash
+    ~/your_file/xxxx.sh
+</code></pre>
+                </p>
+                <p>change your right</p>
+                <p><pre><code>sudo chmod 755 /etc/rc.local</code></pre></p>
+                <p>Finally, start your service and restart</p>
+                <p><pre><code>sudo systemctl enable rc-local</code></pre></p>
+                </blockquote>
+                <h1>Preference</h1>
+                <blockquote>    
+                    Service: <a href="https://marsown.com/wordpress/how-to-enable-etc-rc-local-with-systemd-on-ubuntu-20-04/">https://marsown.com/wordpress/how-to-enable-etc-rc-local-with-systemd-on-ubuntu-20-04/<br></a>
+                    Icon Source: <a href="http://vorillaz.github.io/devicons/#/main">http://vorillaz.github.io/devicons/#/main</a><br>
+                    KeyBoard control: <a href="https://github.com/MatMoul/g810-led">https://github.com/MatMoul/g810-led</a>
+                </blockquote>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>All rights reserved &copy; 2023</p>
+    </footer>
+</body>
+</html>

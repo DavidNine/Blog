@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NineBro's Blog</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="/blog/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/articles_driver.css">
+    <link rel="stylesheet" href="/blog/CSS/articles_driver.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <header>
+        <h1>NineBro's Blog</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
+            <li><a href="../about.html">About Me</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content-container">
+            <div class="content">
+                <h1>Local install with ISO/RPM</h1>
+                <blockquote>
+                    <p>
+                        Date: 2023/11/29<br>
+                        Auth: Guanyan.Wang<br>
+                        Environment: Redhat 8.1 <br>
+                    </p>
+                </blockquote>
+                <h2>1. Write repo</h2>
+                <blockquote>
+                    <p>
+                        <h3>First:</h3>
+                        &emsp;We create an repo called "local.repo" at "/etc/yum.repos.d"
+                    </p>
+                    <pre><code>$ cd /etc/yum.repos.d<br>$ touch local.repo</code></pre>
+                    <p>
+                        <h3>Second:</h3>
+                        &emsp;We write below content in "local.repo"
+                    </p>
+                    <pre><code>[BaseOS-local]<br>name=BaseOS-local<br>enabled=1<br>baseurl=file:///mnt/cdrom/BaseOS/<br>gpgcheck=0<br>[AppStream-local]<br>name=AppStream-local<br>baseurl=file:///mnt/cdrom/AppStream/<br>gpgcheck=0</code></pre>
+                    <p>
+                        <h3>Third:</h3>
+                        &emsp;mount the ISO file to specific path, in this case, we specify to "/mnt/cdrom"
+                        <pre><code>$ mount /path/to/ISO/File /mnt/cdrom</code></pre>
+                    </p>
+                </blockquote>
+                <h2>2. Update your yum/dnf repolist</h2>
+                <blockquote>
+                    <p>Just simply run command:</p>
+                    <pre><code>$ dnf repolist<br>$ yum repolist</code></pre>
+                    <h2>Now, you can install package from local host !</h2>
+                </blockquote>
+
+                <h1>Preference</h1>
+                <blockquote>    
+                   Me and my friend :)
+                </blockquote>
+            </div>
+        </main>
+        
+        <footer>
+            <p>All rights reserved &copy; 2023</p>
+        </footer>
+    </body>
+    </html>
+    

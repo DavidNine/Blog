@@ -1,0 +1,13 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content-container p{
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.content {
+    margin-top: 20px;
+    min-height: 70vh;
+}

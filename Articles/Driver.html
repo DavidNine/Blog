@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NineBro's Blog</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="/blog/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/articles_driver.css">
+    <link rel="stylesheet" href="/blog/CSS/articles_driver.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <header>
+        <h1>NineBro's Blog</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
+            <li><a href="../about.html">About Me</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content-container">
+            <div class="content">
+                <h1>Make a Driver in Linux OS </h1>
+                <blockquote>
+                    <p>
+                        Date: 2023/06/28<br>
+                        Auth: Guanyan.Wang<br>
+                        Environment: Ubuntu 22.04 <br>
+                    </p>
+                </blockquote>
+                <h2>1. Getting-start</h2>
+                <blockquote>
+                    <p>First, we need to build essential environment for developing linux Driver, build-essential will install tools that mandatory for compiling program such as gcc, make etc.</p>
+                    <p>$(uname -r) will get your kernel version</p>
+                    <pre><code>$sudo apt-get install build-essential linux-headers-$(uname -r)</code></pre>
+                    <picture>
+                        <img src="../Image/Ariticle-Driver/uname_result.jpg" alt="uname command result">
+                        <p>uname result</p>
+                    </picture>
+                </blockquote>
+                <h2>2. Simple Driver !</h2>
+                <div class="test">
+                    <blockquote>
+                        <pre><code>/* example.c */<br>#include &lt;linux/init.h&gt;<br>#include &lt;linux/module.h&gt;<br><br>MODULE_LICENSE("Dual BSD/GPL");<br>static int example_init(void) {<br>    printk("&lt;Sample&gt; Example: init\n");<br>    return 0;<br>}<br>static void example_exit(void) {<br>    printk("&lt;Sample&gt; Example: exit\n");<br>}<br>module_init(example_init);<br>module_exit(example_exit);</code></pre>
+                        <p>$(printk) is like printf in kernel programing. If we need to debug, this will be useful, we can use $(sudo dmesg) to observe the result.</p>
+                    </blockquote>
+                    <h2>3. Compile</h2>
+                    <blockquote>
+                        <p>We need to make a makefile to compile our program</p>
+                        <pre><code>$touch Makefile</code></pre>
+                        <p>Use touch command to create a Makefile, then we write follow program into Makefile</p>
+                        <pre><code>obj-m := example.o<br>ifeq ($(KERNELDIR),)<br>KERNELDIR=/lib/modules/$(shell uname -r)/build<br>endif<br><br>all:<br>    make -C $(KERNELDIR) M=$(PWD) modules<br><br>clean:<br>    make -C $(KERNELDIR) M=$(PWD) clean</code></pre>
+                        <p>Use make command to compile</p>
+                        <pre><code>$make</code></pre>
+                        <picture>
+                            <img src="../Image/Ariticle-Driver/make_result.jpg" alt="make command result">
+                            <p>make command result</p>
+                        </picture>
+                        <br>
+                        <picture>
+                            <img src="../Image/Ariticle-Driver/make_result2.jpg" alt="make command files result">
+                            <p>make command file result </p>
+                        </picture>
+                    </blockquote>
+                    <h2>4. Load/Remove Driver</h2>
+                    <blockquote>
+                        <p>We use linux command $(insmod) and $(rmmod) to load/remove Driver</p>
+                        <pre><code>$sudo insmod example.ko<br>$sudo rmmod example</code></pre>
+                        <p>You can use command $(sudo dmesg) to observe the Driver info</p>
+                        <picture>
+                            <img src="../Image/Ariticle-Driver/Driver_info.jpg" alt="Driver Info">
+                            <p>Check Driver info</p>
+                        </picture>
+                    </blockquote>
+                    <h1>Reference</h1>
+                    <blockquote>
+                        <p>Writing device drivers in Linux: A brief tutorial</p>
+                        <p>If there is any mistake<br>Please contact me at ninebro1211@gmail.com</p>
+                    </blockquote>
+                    <p>More linux driver info: <a href="https://sysprog21.github.io/lkmpg/">https://sysprog21.github.io/lkmpg/</a></p>
+                </div>
+                
+            </div>
+        </main>
+        
+        <footer>
+            <p>All rights reserved &copy; 2023</p>
+        </footer>
+    </body>
+    </html>
+    

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NineBro's Blog</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="/blog/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/articles_KeyBoard.css">
+    <link rel="stylesheet" href="/blog/CSS/articles_KeyBoard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <h1>NineBro's Blog</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
+            <li><a href="../about.html">About Me</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content-container">
+            <div class="content">
+                <h1>Use screen to sync remote and local console</h1>
+                <blockquote>
+                    <p>Date : 2023/12/26</p>
+                    <p>Auth : Guanyan.Wang</p>
+                    <p>Environment : Ubuntu 22.04</p>
+                </blockquote>
+                <h1>why sync console?</h1>
+                <blockquote>
+                    <p>&emsp;I have been working with server for a few month. If we want to use server in the Lab,</p>
+                    <p>&emsp;we need to use ssh protocol to connect to the server. However, we will make a new </p>
+                    <p>&emsp;session while ssh into the server. The content will not identical with server.</p>
+                    <p>&emsp;If we make some test on server, the test content will not send to the local.</p>
+                    <p>&emsp;So we need to do sync.</p>                    
+                </blockquote>
+                <h1>How to sync with screen?</h1>
+                <blockquote>
+                    <p>&emsp;First, we need to create a new screen session</p>
+                    <code>
+                        <pre>$ screen -dmS server</pre>
+                    </code>
+                    <p>&emsp;you can use -ls argument to list existed session</p>
+                    <code>
+                        <pre>$ screen -ls</pre>
+                    </code>
+                    <picture>
+                        <img src="../Image/Article-Screen/screen-ls.png" alt="screen -dmS and screen -ls">
+                        <p>screen result</p>
+                    </picture>
+                    <p>&emsp;Now, use screen -X server to attach to the session.</p>
+                    <p>&emsp;&emsp;note: you can use tty to check current session.</p>
+                    <code>
+                        <pre>$ tty<br># /dev/pts/7<br><br>$ screen -x server</pre>
+                    </code>
+                    <picture>
+                        <img src="../Image/Article-Screen/screen-x.png" alt="screen -x server and tty result">
+                        <p>screen -x server and tty result</p>
+                    </picture>
+                    <picture>
+                        <img src="../Image/Article-Screen/screen-in-server.png" alt="in screen session">
+                        <p>in screen session</p>
+                    </picture>
+                    <p>&emsp;Now, We can open two terminal to see if the screen is sync.</p>
+                    <picture>
+                        <img src="../Image/Article-Screen/screen-two-screen.png" alt="Two sync screen">
+                        <p>Two sync screen</p>
+                    </picture>
+                    <p>&emsp;As you can see, two terminal are sync, so that, we can easily observe the test content in server.</p>
+                </blockquote>
+                <h1>Preference</h1>
+                <blockquote>    
+                    Me :)
+                </blockquote>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>All rights reserved &copy; 2023</p>
+    </footer>
+</body>
+</html>

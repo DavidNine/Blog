@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NineBro's Blog</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="/blog/CSS/style.css">
+    <link rel="stylesheet" href="../CSS/aritcles_basic_format.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <header>
+        <h1>NineBro's Blog</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../articles.html">Articles</a></li>
+            <li><a href="../about.html">About Me</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="content-container">
+            <div class="content">
+                <h1>ssh skills</h1>
+                <blockquote>
+                    <p>
+                        Date: 2023/12/27<br>
+                        Auth: Guanyan.Wang<br>
+                        Environment: Ubuntu 22.04 <br>
+                    </p>
+                </blockquote>
+                <h2>1. ssh</h2>
+                <blockquote>
+                    <!-- ============================
+                        Introduce simple ssh usage 
+                    ==============================-->
+                    <p>First, install ssh to your environment, here I will use Ubuntu for instance.</p>
+                    <code>
+                        <pre>$ sudo apt install openssh-server</pre>
+                        <br>
+                    </code>
+                    <p>After install, we can use service to check current status of the ssh service.</p>
+                    <code>
+                        <pre>$ sudo service ssh status</pre>
+                        <br>
+                    </code>
+                    <p>If the status of the ssh service is start, just like the picture below, </p>
+                    <picture>
+                        <img src="../Image/Article-SSH/ssh_to_localhost.png" alt="screen -dmS and screen -ls">
+                        <p>screen result</p>
+                        <br>
+                    </picture>                
+                </blockquote>
+                <h1>Reference</h1>
+                <blockquote>
+                    <p>Writing device drivers in Linux: A brief tutorial</p>
+                    <p>If there is any mistake<br>Please contact me at ninebro1211@gmail.com</p>
+                </blockquote>
+                <p>More linux driver info: <a href="https://sysprog21.github.io/lkmpg/">https://sysprog21.github.io/lkmpg/</a></p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>All rights reserved &copy; 2023</p>
+        </footer>
+    </body>
+    </html>
+    
